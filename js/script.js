@@ -1,6 +1,7 @@
 const passGenBtn = document.querySelector('.passGenBtn');
 const passwordShow = document.getElementById('password');
 const copyBtn = document.getElementById('copyBtn');
+const strengthTextElement = document.getElementById('strength');
 
 const generatePassword = passGenBtn.addEventListener('click', () => {
     const lengthNum = 12;
@@ -11,7 +12,7 @@ const generatePassword = passGenBtn.addEventListener('click', () => {
     for (let i = 0; i < lengthNum; i++) {
         const randomIndex = Math.floor(Math.random() * charset.length);
         password += charset[randomIndex];
-        console.log(randomIndex, password, i);
+        // console.log(randomIndex, password, i);
     }
 
     passwordShow.textContent = password;
@@ -36,17 +37,24 @@ const checkStrength = (password) => {
         strength++;
     }
     
-    const strengthText = ['Weak', 'Fair', 'Good', 'Strong'] [strength - 1] || 'Weak';
-    document.getElementById('strength').textContent = `Strength: ${strengthText}`;
+    const strengthTextLabels = ['Weak', 'Fair', 'Good', 'Strong'];
+    const strengthText = strengthTextLabels[strength - 1] || 'Weak';
 
-    changeBgColor(strength);
+    changeBgColor(strengthText);
 
-    console.log(password, strength, strengthText);
+    // console.log(password, strength, strengthText, strengthTextLabels);
 };
 
-const changeBgColor = (strength) => {
-    const bgColors = ['#ff4d4d', '#ffa500', '#4682b4', '#32cd32'];
-    document.body.style.backgroundColor = bgColors[strength - 1] || '#ffd4d4';
+const changeBgColor = (strengthText) => {
+    const bgColors = {
+        'Weak': '#ff4d4d', 
+        'Fair': '#ffa500',
+        'Good': '#4682b4',
+        'Strong': '#32cd32'
+    };
+    strengthTextElement.innerHTML = `Strength: <span style="background-color: ${bgColors[strengthText]}; padding: 5px 10px; border-radius: 5px; color: white;">
+        ${strengthText}
+    </span>`;
 };
 
 copyBtn.innerText = '📋';
@@ -72,11 +80,4 @@ copyBtn.addEventListener('click', async () => {
     catch (err) {
         console.error(`Failed to copy: ${err}`);
     }
-})
-
-
-
-
-
-// TODO:
-// 1. instead of changing bgColor of whole document according to pass. strength, change the bgColor of strengthText instead.
+});
