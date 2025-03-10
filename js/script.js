@@ -15,6 +15,7 @@ const generatePassword = passGenBtn.addEventListener('click', () => {
     }
 
     passwordShow.textContent = password;
+    passwordShow.style.border = '2px solid rgb(40, 40, 168)'; 
 
     checkStrength(password);
 });
@@ -79,5 +80,3 @@ copyBtn.addEventListener('click', async () => {
 
 // TODO:
 // 1. instead of changing bgColor of whole document according to pass. strength, change the bgColor of strengthText instead.
-// 2. give border for password.
-// 3. create a btn to copy password using copy icon and tick icon beside password. when the btn is clicked, it should change the icon. (using toggle system)
