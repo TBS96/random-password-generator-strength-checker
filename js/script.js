@@ -1,4 +1,6 @@
 const passGenBtn = document.querySelector('.passGenBtn');
+const passwordShow = document.getElementById('password');
+const copyBtn = document.getElementById('copyBtn');
 
 const generatePassword = passGenBtn.addEventListener('click', () => {
     const lengthNum = 12;
@@ -12,7 +14,6 @@ const generatePassword = passGenBtn.addEventListener('click', () => {
         console.log(randomIndex, password, i);
     }
 
-    const passwordShow = document.getElementById('password');
     passwordShow.textContent = password;
 
     checkStrength(password);
@@ -47,6 +48,30 @@ const changeBgColor = (strength) => {
     document.body.style.backgroundColor = bgColors[strength - 1] || '#ffd4d4';
 };
 
+copyBtn.innerText = '📋';
+
+copyBtn.addEventListener('click', async () => {
+    if (!passwordShow.textContent) {
+        alert('No password to copy!');
+        return;
+    }
+
+    try {
+        await navigator.clipboard.writeText(passwordShow.textContent);
+        passwordShow.style.backgroundColor = 'lightgreen';
+        setTimeout(() => {
+            passwordShow.style.backgroundColor = 'transparent';
+        }, 2000);
+        copyBtn.innerText = '✔️';
+
+        setTimeout(() => {
+            copyBtn.innerText = '📋';
+        }, 2000);
+    }
+    catch (err) {
+        console.error(`Failed to copy: ${err}`);
+    }
+})
 
 
 

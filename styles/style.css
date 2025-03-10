@@ -10,6 +10,12 @@ body {
     border: 5px solid green;
     background-color: cornsilk;
 }
+.btns {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
 
 .passGenBtn {
     padding: 10px 20px;
@@ -17,6 +23,7 @@ body {
     color: white;
     font-size: 18px;
     border: none;
+    border-radius: 5px;
     cursor: pointer;
     transition: 0.5s ease;
 }
@@ -40,4 +47,23 @@ body {
     margin-top: 20px;
     font-size: 1.2em;
     font-weight: bold;
+}
+
+#copyBtn {
+    padding: 10px 20px;
+    background-color: rgb(40, 40, 168);
+    font-size: 18px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.5s ease;
+}
+
+#copyBtn:hover {
+    background-color: rgba(40, 40, 168, 0.87);
+}
+
+#copyBtn:active {
+    background-color: rgb(94, 224, 94);
+    transform: translateX(12px);
 }
